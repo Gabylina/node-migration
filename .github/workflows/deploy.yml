@@ -1,0 +1,11 @@
+name: Build and Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stub - build workflow triggered manually
+        run: echo "Este es un stub. La build se ejecuta solo si el usuario la inicia manualmente."
