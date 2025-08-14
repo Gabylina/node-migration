@@ -1,11 +1,28 @@
-name: Build and Deploy
+name: Compile Node.js Project
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # o la rama que estés usando
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Stub - build workflow triggered manually
-        run: echo "Este es un stub. La build se ejecuta solo si el usuario la inicia manualmente."
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # puedes usar 18, 20, etc.
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile the project
+        run: npm run build  # o el comando que uses para compilar
+
+      - name: Lint or test (opcional)
+        run: npm run lint && npm test
