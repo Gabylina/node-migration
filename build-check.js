@@ -1,15 +1,22 @@
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
-console.log('🟡 Iniciando verificación del servidor...');
+console.log('🟡 Iniciando verificación del servidor (5s)...');
+const child = spawn(process.execPath, ['index.js'], { stdio: 'inherit' });
 
-const server = exec('node index.js');
-
-setTimeout(() => {
-  server.kill();
-  console.log('✅ Servidor levantado y cerrado correctamente');
+const timer = setTimeout(() => {
+  console.log('✅ Servidor levantado. Cerrando verificación…');
+  child.kill();
+  process.exit(0);
 }, 5000);
 
-server.stderr.on('data', (data) => {
-  console.error('❌ Error en el servidor:', data);
+child.on('exit', (code) => {
+  clearTimeout(timer);
+  if (code !== 0) {
+    console.error(`❌ El servidor salió con código ${code}`);
+    process.exit(code);
+  }
+});
+child.on('error', (err) => {
+  console.error('❌ Error al iniciar el servidor:', err.message);
   process.exit(1);
 });
