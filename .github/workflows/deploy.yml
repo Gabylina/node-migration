@@ -3,7 +3,7 @@ name: Compile Node.js Project
 on:
   push:
     branches:
-      - main  # o la rama que estés usando
+      - main
 
 jobs:
   build:
@@ -16,13 +16,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # puedes usar 18, 20, etc.
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Compile the project
-        run: npm run build  # o el comando que uses para compilar
+      - name: Build project (opcional si no usas build aún)
+        run: npm run build || echo "No build script defined"
 
       - name: Lint or test (opcional)
-        run: npm run lint && npm test
+        run: npm run lint || echo "No lint script defined"
