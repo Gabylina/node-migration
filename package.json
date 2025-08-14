@@ -6,7 +6,6 @@
   "scripts": {
   "build": "node build-check.js",
   "validate": "node validate-controllers.js"
-}
 
   },
   "keywords": [],
