@@ -22,3 +22,4 @@ jobs:
 
       - name: Validar controllers
         run: npm run validate
+
