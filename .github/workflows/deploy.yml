@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Validate Controllers"]
+    workflows: ["Build"]
     types:
       - completed
 
@@ -13,9 +13,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-      - name: Compilar proyecto
-        run: npm run build
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar despliegue
+        run: echo "Desplegando aplicación..."
