@@ -35,3 +35,4 @@ fs.readdir(controllersDir, (err, files) => {
     console.log('🎉 Todos los controladores fueron validados con éxito');
   }
 });
+
