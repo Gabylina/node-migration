@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Validate controllers
+        run: npm run validate
+
       - name: Build project (opcional si no usas build aún)
         run: npm run build || echo "No build script defined"
 
