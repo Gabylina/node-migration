@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js"
+  "build": "node build-check.js",
+  "validate": "node validate-controllers.js"
+}
 
   },
   "keywords": [],
